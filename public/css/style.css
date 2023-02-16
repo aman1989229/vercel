@@ -1,0 +1,45 @@
+/* Change Brand Font */
+.navbar-brand{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+  }
+  
+  /* Change Navigation Color */
+  .navbar #myMenu .custom-nav .nav-item a {
+    color:green;
+  }
+  .navbar #myMenu .custom-nav .nav-item a:hover{
+    color: green;
+  }
+  
+  /* Make Header Image Responsive */
+  .back-image {
+    background-size: half;
+    background-position: right center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    border-radius: 0px;
+    margin-top: 74px;
+  }
+  
+  .bdr{
+    background-color: whitesmoke;
+    height:200;
+  }
+  bdr1{
+    background-color: lightgray;
+    height:200;
+  }
+  /* Header Image Sub-Title */
+  .st {
+    font-size: 24px;
+  }
+  
+  /* Change Footer Social Icon Color */
+  a {
+    color:  #DC3545;
+  }
+  a:hover {
+    color: #E994A2;
+  }

@@ -1,0 +1,59 @@
+<html><head><title>Your Chat List</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+<!-- Bootstrap core CSS     -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Animation library for notifications   -->
+<link href="/assets/css/animate.min.css" rel="stylesheet"/>
+
+<!--  Light Bootstrap Table core CSS    -->
+<link href="/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
+
+</head>
+<body>
+    <div style="background-image: url('/imgs/bg111.jpg'); width: 100%; height: 100%; background-repeat:inherit">
+        <nav class="navbar navbar-default navbar-fixed" style="border-bottom: 3px solid lightcoral;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/dashboard">Back to Dashboard</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right"> 
+                            <li>
+                                <a href="/user/logout">
+                                    <p style="font-weight: bold; font-family:cursive;">Logout</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+           <h6 style="padding-left: 20px; color:black;font-size: 20px;">&nbsp;<u>All Chats...</u></h6> 
+
+           <%if (list.length == 0){ %><div class="card" style="text-align:center;"> No Chats yet!!</div>
+           <%}else{%>
+           <% for(var i=0;i<list.length;i++) { %>
+                <div class="card" style="width:26rem; height:24rem; margin-top:35px; float: left; padding: 8px; margin-left: 15px;border:1px solid black; background-color: black;">
+                        <img src="/imgs/profile.png" class="card-img-top .form-control" alt="Profile" height="90px;" width="100px;" style="align-content: center;margin-left: 76px; margin-bottom: 12px;margin-top: 4px; border-radius: 52px;;"><br/>
+                    <label for="<%=list[i].fname%>" class="form-control" id="name">Patient's Name:: <%=list[i].fname%></label>
+                    <label for="<%=list[i].speciality%>" class="form-control" id="name">Referred for:: <%=list[i].speciality%></label>
+          
+                    
+                    <div class="card-body" style="text-align:right;">
+                        <a href="reply/<%=list[i]._id%>" class="card-link" style="font-weight: bold;">Reply</a>
+                    </div>
+                </div>
+                <%}}%>
+</div>
+</body>
+</html>
+
+

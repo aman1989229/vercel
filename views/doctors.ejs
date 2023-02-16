@@ -1,0 +1,29 @@
+<% if(list.length>0) {%>
+<table>
+    <thead>
+        <tr>
+            <th>First name </th>
+            <th>Last name </th>
+            <th>Sex </th>
+            <th>Age </th>
+            <th>Category </th>
+            <th>Speciality </th>
+            <th>Address </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0;i<list.length;i++) { %>
+        <tr>
+            <td><%= i+1%></td>
+          <td><%= list[i].fname%></td>
+          <td><%= list[i].lname%></td>
+          <td><%= list[i].sex%></td>
+          <td><%= list[i].age%></td>
+          <td><%= list[i].category%></td>
+          <td><%= list[i].speciality%></td>
+          <td><%= list[i].address%></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %> 

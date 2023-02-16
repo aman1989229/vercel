@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+           crossorigin="anonymous">
+           <link rel="stylesheet" href="../public/vendor/bootstrap/css/bootstrap.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+           crossorigin="anonymous">
+
+        <style>
+           .custom-margin {
+              margin-top: 5vh;
+           }
+        </style>
+     
+  <title>Ask Your Doctor</title>
+</head>
+
+<body>
+  
+    <div class="container-fluid" style="background-image: url('/imgs/bg13.jpg');">
+    <div class="col-md-1"><a href="/dashboard" style="color: azure;font-size: 20px;">Back</a><span style="color: brown;">&nbsp;|&nbsp;</span><a href="/user/logout" style="font-size: 20px;color:darkblue;font-weight: bold;">Logout</a></div>
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-5">
+            <img src="/imgs/banner1.jpg" class="card-img-top" alt="Banner" style="border: 4px solid blueviolet;">
+            </div>
+      </div>
+
+      <div class="row justify-content-center">
+           <div class="col-sm-6 col-md-5"  style="margin-bottom: 30px;">
+              <!-- Add bg-primary in form tag if want form background color-->
+              <!--text-white if want text color white-->
+              
+              <form class="shadow-lg p-4 text-white"  method="post" action="/consult/save" style="background-color: black;border: 2px solid whitesmoke;" >
+                <input type="hidden" id="id" name="id" value="<%= user[0]._id%>">
+                  <div class="form-group"> 
+                        <h2 class="text-center">Ask Your Doctor</h2>
+                        <% include ./partials/messages%> 
+                    <i class="fas fa-envelope"></i><label for="fname" class="pl-2 font-weight-bold">First Name:</label><input type="text"
+                       class="form-control" placeholder="Name" name="fname" value="">
+                  </div>
+                 
+                  <div class="form-group">  
+                   
+                        <i class="fas fa-user"></i><label for="lname" class="pl-2 font-weight-bold">Last Name:</label><input type="text"
+                           class="form-control" placeholder="Surname" name="lname" value="<% typeof lname !='undefined' ?lname:''%>">
+                      </div>
+                      
+                      <div class="form-group">  
+                            <i class="fas fa-envelope"></i><label for="sex" class="pl-2 font-weight-bold">Sex:</label>
+                        <select class="custom-select" name="sex">
+                              <option selected>Choose...</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                            </select>
+                      </div>
+
+                          <div class="form-group">  
+                   
+                                <i class="fas fa-user"></i><label for="age" class="pl-2 font-weight-bold">Age:</label><input type="user"
+                                   class="form-control" placeholder="How old are you?" name="age" value="<% typeof age !='undefined' ?age:''%>">
+                              </div>
+                 
+                              <div class="form-group">  
+                                  <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <label class="input-group-text" for="speciality">Speciality</label>
+                                          </div>
+                                          <select class="custom-select" name="speciality" style="color: rgb(4, 170, 133); font-size: 16px;">
+                                            <option selected>Choose...</option>
+                                            <% for(var i=0;i<list.length;i++) { %>
+                                            <option value=<%= list[i].speciality %>><%=list[i].speciality%></option>
+                                            <% }%>
+                                          </select>
+                                        </div>
+                            </div>
+          
+                            <input type="hidden" id="message" name="message" value="blah">
+                      
+                       <button type="submit" class="btn btn-outline-success mt-3 btn-block shadow-sm font-weight-bold">Submit</button>
+              </form>
+            </div>
+        </div>
+        </div>
+  
+  <!-- JQuery Popper Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+</body>
+
+</html>

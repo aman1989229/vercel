@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+           crossorigin="anonymous">
+           <link rel="stylesheet" href="../public/vendor/bootstrap/css/bootstrap.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+           crossorigin="anonymous">
+
+        <style>
+           .custom-margin {
+              margin-top: 5vh;
+           }
+           #header{
+            font-size: 30px;
+            text-decoration:underline;
+            color: black;
+           }
+        </style>
+     
+  <title>Corona Update</title>
+</head>
+
+<body>
+  
+    <div class="container-fluid" style="background-image: url('/imgs/bg13.jpg');">
+    <div class="col-md-1"><a href="/dashboard" style="color: azure;font-size: 20px;">Back</a><span style="color: brown;">&nbsp;|&nbsp;</span><a href="/user/logout" style="font-size: 20px;color:darkblue;font-weight: bold;">Logout</a></div>
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-5">
+            <img src="/imgs/banner1.jpg" class="card-img-top" alt="Banner" style="border: 4px solid blueviolet;">
+            </div>
+      </div>
+      <h1 style="text-align: center;margin-left: 40px;color:red;">Corona Live Update (World)</h1>
+      <div class="row justify-content-center">
+        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+            <div class="card-header" id="header">Total Cases</div>
+            <div class="card-body">
+                 <!-- using corona javascript api here-->
+                <div id="datatotal" style="text-align: center;">
+
+                </div>
+              <div id="newtotal" style="text-align: center;">
+
+              </div>
+              <!-- upto here-->
+            </div>
+          </div>
+          
+          <div class="card text-white bg-danger mb-3" style="max-width: 18rem;margin-left:10px;">
+            <div class="card-header" id="header">Total Deaths</div>
+            <div class="card-body">
+                <div id="datadeath" style="text-align: center;">
+
+                </div>
+                <div id="newdeath" style="text-align: center;">
+
+                </div>
+            </div>
+          </div>
+       
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;margin-left:10px;">
+            <div class="card-header" id="header">Total Recovered</div>
+            <div class="card-body">
+                <div id="datarecover" style="text-align: center;">
+
+                </div>
+                <div id="newrecover" style="text-align: center;">
+
+                </div>
+            </div>
+          </div>
+           
+
+        </div>
+
+        <h1 style="text-align: center;margin-left: 40px;color:red;">Corona Live Update (India)</h1>
+      <div class="row justify-content-center">
+        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+            <div class="card-header" id="header">Total Cases</div>
+            <div class="card-body">
+                <div id="datatotali" style="text-align: center;">
+
+                </div>
+                <div id="newtotali" style="text-align: center;">
+
+                </div>
+            </div>
+          </div>
+          
+          <div class="card text-white bg-danger mb-3" style="max-width: 18rem;margin-left:10px;">
+            <div class="card-header" id="header">Total Deaths</div>
+            <div class="card-body">
+                <div id="datadeathi" style="text-align: center;">
+
+                </div>
+                <div id="newdeathi" style="text-align: center;">
+
+                </div>
+            </div>
+          </div>
+       
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;margin-left:10px;">
+            <div class="card-header" id="header">Total Recovered</div>
+            <div class="card-body">
+               
+                <div id="datarecoveri" style="text-align: center;">
+
+                </div>
+                <div id="newrecoveri" style="text-align: center;">
+
+                </div>
+            </div>
+          </div>
+           
+
+        </div>
+        </div>
+  
+  <!-- JQuery Popper Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  initglobal()
+  initindia()
+  function initglobal(){
+      var url="https://api.covid19api.com/summary"
+      var datatotal=''
+      var datadeath=''
+      var datarecover=''
+
+      var newtotal=''
+      var newdeath=''
+      var newrecover=''
+      $.get(url,function(data){
+          console.log(data)
+          datatotal=`
+          <h5 class="card-title" style="font-size: 30px;">${data.Global.TotalConfirmed}</h5>
+          `
+          datadeath=`
+          <h5 class="card-title" style="font-size: 30px;">${data.Global.TotalDeaths}</h5>
+          `
+          datarecover=`
+          <h2 class="card-title" style="font-size: 30px;">${data.Global.TotalRecovered}</h5>
+          `
+          newtotal=`
+          <h5 class="card-title" style="font-size: 20px;margin-left:20px;">+${data.Global.NewConfirmed}</h5>
+          `
+          newdeath=`
+          <h5 class="card-title" style="font-size: 20px;margin-left:20px;">+${data.Global.NewDeaths}</h5>
+          `
+          newrecover=`
+          <h5 class="card-title" style="font-size: 20px;margin-left:20px;">+${data.Global.NewRecovered}</h5>
+          `
+
+          $("#datatotal").html(datatotal)
+          $("#datadeath").html(datadeath)
+          $("#datarecover").html(datarecover)
+
+          $("#newtotal").html(newtotal)
+          $("#newdeath").html(newdeath)
+          $("#newrecover").html(newrecover)
+      })
+
+  }
+
+  function initindia(){
+    var url="https://api.covid19api.com/summary"
+      var datatotali=''
+      var datadeathi=''
+      var datarecoveri=''
+      var newtotali=''
+      var newdeathi=''
+      var newrecoveri=''
+      $.get(url,function(data){
+          console.log(data)
+          datatotali=`
+          <h5 class="card-title" style="font-size: 30px;">${data.Countries[76].TotalConfirmed}</h5>
+          `
+          datadeathi=`
+          <h5 class="card-title" style="font-size: 30px;">${data.Countries[76].TotalDeaths}</h5>
+          `
+          datarecoveri=`
+          <h5 class="card-title" style="font-size: 30px;">${data.Countries[76].TotalRecovered}</h5>
+          `
+          newtotali=`
+          <h5 class="card-title" style="font-size: 20px;margin-left:20px;">+${data.Countries[76].NewConfirmed}</h5>
+          `
+          newdeathi=`
+          <h5 class="card-title" style="font-size: 20px;margin-left:20px;">+${data.Countries[76].NewDeaths}</h5>
+          `
+          newrecoveri=`
+          <h5 class="card-title" style="font-size: 20px;margin-left:20px;">+${data.Countries[76].NewRecovered}</h5>
+          `
+
+          $("#datatotali").html(datatotali)
+          $("#datadeathi").html(datadeathi)
+          $("#datarecoveri").html(datarecoveri)
+
+          $("#newtotali").html(newtotali)
+          $("#newdeathi").html(newdeathi)
+          $("#newrecoveri").html(newrecoveri)
+      })
+
+  }
+</script>
+
+</html>

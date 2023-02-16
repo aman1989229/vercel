@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+           crossorigin="anonymous">
+     
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+           crossorigin="anonymous">
+     
+        <style>
+           .custom-margin {
+              margin-top: 5vh;
+           }
+
+.container {
+   color: black;
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+     
+        </style>
+     
+  <title>Chat</title>
+</head>
+
+<body>
+    <div class="container-fluid"  style="background-image:url('/imgs/bg151.jpg')">
+        <div class="col-md-1"><a href="/dashboard" style="color: rgb(5, 41, 41);">Back</a><span style="color: brown;">&nbsp;|&nbsp;</span><a href="/user/logout">Logout</a></div>
+        <div class="row justify-content-center custom-margin" style="padding-bottom: 140px;">
+           <div class="col-sm-6 col-md-4">
+              <!-- Add bg-primary in form tag if want form background color-->
+              <!--text-white if want text color white-->
+              
+              <form class="shadow-lg p-4 text-white bg-light" method="post" action="/reply">
+                <%if(user[0].typo=="Patient") {%>
+                  <input type="hidden" id="response" name="response" value="0">
+                  <%}else{%>
+                    <input type="hidden" id="response" name="response" value="1">
+                  <%}%>
+                <input type="hidden" id="user_id" name="token" value=<%=chat[0]._id%>>
+                  <div class="form-group"> 
+                        <h2 class="text-center" style="color: black;">Chat</h2>
+                        <% include ./partials/messages%> 
+
+                        <div class="container">
+                              <img src="/imgs/profile.png" alt="Avatar" style="width:100%;">
+                              <h6 style="text-align: center;">Patient's Details</h6>
+                              <table><tr><td>Name:</td><td><%=chat[0].fname%>&nbsp;<%=chat[0].lname%></td></tr>
+                                <tr><td>Sex:</td><td><%=chat[0].sex%></td></tr>
+                                <tr><td>Age:</td><td><%=chat[0].age%>
+                            </td></tr></table>
+                            </div>
+                    
+                        </div>
+                     <div class="container">
+                      <div class="form-group">  
+                        <% for(var i=0;i<token.length;i++){%>
+                       <% if(token[i].ur==1){ %>
+                        <i class="fas fa-envelope"></i><label for="message" class="pl-2 font-weight-bold">Patient's Query:</label>
+                        <p>"<%=token[i].message%>"</p>
+                        <%} else {%>
+                        <i class="fas fa-envelope"></i><label for="message" class="pl-2 font-weight-bold">Doctor's Reply:</label>
+                        <p>"<%=token[i].message%>"</p>
+                        <%} }%>
+                      </div></div>
+
+                      <div class="container darker">
+                        
+                          <div class="form-group">  
+                              <label for="reply" class="pl-2 font-weight-bold">Reply:</label><input type="textarea"
+                                  class="form-control" placeholder="Try this remedy..." name="reply"  >
+                             </div></div>
+                        
+                         <input type="hidden" id="current_id" name="cid" value="<%=chat[0]._id%>">
+                        <%if(chat[0].close=='1'){%>
+                          <div style="color:black;text-align: center;">Chat is closed for patient.</div>
+                        <%}else {%>
+                          <button type="submit" class="btn btn-outline-success mt-3 btn-block shadow-sm font-weight-bold">Reply</button>
+                         <%}%>
+                 </form>
+            </div>
+        </div>
+        </div>
+  
+  <!-- JQuery Popper Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+</body>
+
+</html>

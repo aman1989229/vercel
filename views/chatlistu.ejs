@@ -1,0 +1,50 @@
+<html><head><title>Your Chat List</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+<!-- Bootstrap core CSS     -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Animation library for notifications   -->
+<link href="/assets/css/animate.min.css" rel="stylesheet"/>
+
+<!--  Light Bootstrap Table core CSS    -->
+<link href="/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
+
+</head>
+<body>
+    <div style="background-image: url('/imgs/bg171.jpg'); width: 100%; height: 100%; background-repeat:inherit">
+        <nav class="navbar navbar-default navbar-fixed" style="border-bottom: 3px solid lightcoral;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        
+                        <a class="navbar-brand" href="/dashboard">Back to Dashboard</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right"> 
+                            <li>
+                                <a href="/user/logout">
+                                    <p style="font-weight: bold; font-family:cursive;">Logout</p>
+                                </a>
+                            </li>
+                            <li class="separator hidden-lg"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+           <h6>&nbsp;Your Previous Chats...</h6> 
+           
+ <%if (list.length == 0){ %><div class="card" style="text-align:center;"> No Chats yet!!</div>
+ <%}else{%>
+<% for(var i=0;i<list.length;i++) { if(list[i].assign!=0){%>
+    <div class="card" style="width:23rem; height:25rem; margin-top:20px; float: left; padding: 4px; margin-left: 15px;border:1px solid black;">
+        <img src="/imgs/profile.png" class="card-img-top .form-control" alt="Profile" height="90px;" width="100px;" style="align-content: center;margin-left: 55px; margin-top: 15px; margin-bottom: 10px;"><br/>
+        <label for="<%=list[i].fname%>" class="form-control" id="name">Patient's Name: <%=list[i].fname%></label>
+        <label for="<%=list[i].speciality%>" class="form-control" id="name">Referred to:<%=list[i].speciality%></label>
+        <div class="card-body" style="text-align:right; margin-right: 10px;">
+            <a href="reply/<%=list[i]._id%>" class="card-link" style="color:black; font-weight: bolder;">Chat =></a>
+        </div>   
+    </div>
+    <%}}}%>
+</div>
+</body>
+</html>
